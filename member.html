@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navlink {
+            position: fixed;
+            top: 0%;
+            right: 0%;
+            z-index: 6;
+        }
+
+        .navlink a {
+            text-decoration: none;
+            color: white;
+            background-color: none;
+            padding-top: 2vw;
+            padding-bottom: 2vw;
+            border-color: rgb(243, 238, 238);
+            padding: auto;
+            margin: -2px;
+            /* float向右排列 */
+            float: right;
+            text-align: center;
+            width: 12vw;
+            font-size: 1vw;
+            z-index: 6;
+
+        }
+
+        .mythlogo {
+            opacity: 0.7;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12vw;
+            height: 12vw;
+            z-index: 2;
+        }
+
+
+        .navlink a:hover {
+            color: black;
+            background-color: white;
+            border-radius: 2cm;
+        }
+
+        body {
+            background-color: rgb(31, 9, 156);
+            margin: 0;
+            background-size: contain;
+            background-attachment: fixed;
+            background-position: bottom;
+
+
+            /*  overflow: hidden;不顯示超出畫面內容 */
+        }
+
+        /* 標題 */
+        .title {
+            position: absolute;
+            top: 5vh;
+            left: 20vw;
+            color: rgb(13, 14, 13);
+            font-size: 6vw;
+            font-style: bold;
+        }
+
+        .bigGround {
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .chr img {
+            display: none;
+        }
+
+        /* 控制移動到下一張的按鈕圖片 */
+        .next {
+            color: black;
+            position: fixed;
+            font-style: bold;
+            bottom: 55vh;
+            right: 2vw;
+            height: 20vh;
+            font-size: 4vh;
+            z-index: 6;
+            cursor: pointer;
+        }
+
+        .next img {
+            position: fixed;
+            bottom: 45vh;
+            right: 0;
+            height: 25vh;
+            font-size: 3vh;
+            z-index: 6;
+            cursor: pointer;
+            display: none;
+            animation-name: changePosition;
+            animation-duration: 1000ms;
+            animation-delay: 0;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes changePosition {
+            0% {
+                bottom: 45vh;
+            }
+
+            25% {
+                bottom: 46vh;
+            }
+
+            50% {
+                bottom: 45vh;
+            }
+
+            75% {
+                bottom: 46vh;
+            }
+
+            100% {
+                bottom: 45vh;
+            }
+        }
+
+        .move1 {
+            display: block;
+            position: relative;
+            top: 20vh;
+            left: 10vw;
+            width: 35vw;
+            height: 95vh;
+            animation-fill-mode: forwards;
+            animation-name: mov01;
+            animation-duration: 1000ms;
+            animation-timing-function: ease-in-out;
+
+        }
+
+        @keyframes mov01 {
+            0% {
+                left: 10vw;
+            }
+
+
+            100% {
+                left: -75vw;
+            }
+        }
+
+        /*  animation-fill-mode: forwards;動畫結束時停在最後一個影格*/
+        .move2 {
+            display: block;
+            position: absolute;
+            top: 20vh;
+            left: 100vw;
+            width: 35vw;
+            height: 95vh;
+            animation-fill-mode: forwards;
+            animation-duration: 1000ms;
+            animation-name: mov02;
+            animation-timing-function: ease-in-out;
+
+        }
+
+        @keyframes mov02 {
+            0% {
+                left: 100vw;
+            }
+
+            100% {
+                left: 10vw;
+            }
+        }
+
+        /* 名稱方塊 */
+        .name div {
+            position: absolute;
+            font-size: 3vw;
+            color: black;
+            left: 50vw;
+            top: 0;
+            z-index: 5;
+            display: none;
+
+        }
+
+        video {
+            position: absolute;
+            top: 10vh;
+            right: 10vw;
+            width: 50vw;
+            height: 100vh;
+            z-index: 0;
+
+        }
+
+        /* 敘述方塊 */
+        .express {
+            position: absolute;
+            left: 0;
+        }
+
+
+        /* 內文字形大小顏色設定 */
+        .express div div {
+            font-size: 3vh;
+            color: black;
+            display: none;
+        }
+
+
+        /* 表格設定先在這裡把display設定NONE再進行調整 */
+        .personTableup {
+            position: absolute;
+            right: 10vw;
+            top: 10vh;
+            z-index: 6;
+        }
+
+        .personTable {
+            display: none;
+        }
+
+        .personTable img {
+            color: black;
+            width: 200px;
+            height: 200px;
+            /* display: none; */
+        }
+
+        table,
+        th,
+        td {
+            color: black;
+            border: 1px solid;
+
+        }
+
+        /* 介紹裡面的圖片 */
+        .express img {
+            width: 23vw;
+            height: 23vw;
+            position: relative;
+            left: 1vw;
+        }
+
+        /* 裝著TABLE跟express說明文字的box */
+        .mainbox {
+            position: relative;
+            top: 17vh;
+            left: 10vw;
+            width: 80vw;
+            border-style: solid;
+            height: 440vh;
+            /* 背景顏色的第四個數字是設定透明度 */
+            background-color: rgb(173, 216, 230, 0.9);
+            line-height: 5vh;
+        }
+
+        #Gura {
+            display: block;
+            position: absolute;
+            top: 20vh;
+            left: 10vw;
+            width: 35vw;
+            height: 95vh;
+        }
+
+        #Next {
+            animation-name: colorchange;
+            animation-duration: 10000ms;
+            animation-delay: 0;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes colorchange {
+            0% {
+                color: skyblue;
+            }
+
+            20% {
+                color: yellow
+            }
+
+            40% {
+                color: peachpuff;
+            }
+
+            60% {
+                color: purple;
+            }
+
+            80% {
+                color: orangered;
+            }
+
+            100% {
+                color: skyblue;
+            }
+        }
+
+        #rightBar {
+
+            z-index: 9999;
+
+            width: 50px;
+
+            position: fixed;
+
+            right: 10px;
+
+            bottom: 5%;
+
+            height: auto;
+
+        }
+
+        #rightBar .btn {
+
+            width: 50px;
+
+            height: 50px;
+
+            text-align: center;
+
+            line-height: 20px;
+
+            display: inline-block;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+        }
+
+        #rightBar img {
+            width: 40px;
+            height: 40px;
+
+        }
+
+        /* 登入者姓名 */
+        #logfirstName {
+            position: fixed;
+            top: 2vh;
+            left: 20vw;
+            z-index: 999;
+            color: blue;
+            width: 10vw;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="./_js/jquery-3.6.0.js"></script>
+</head>
+
+
+<body>
+    <div id="logfirstName"></div>
+    <!-- 至頂卷軸按鈕 -->
+    <div id="rightBar">
+
+        <div class="btn" id="shougongBtn"><span><img src="./背景/top.jpg" /></a></span></div>
+
+    </div>
+    <div><a href="./frontpage.html">
+            <img src="./背景/holomyth01.jpg" alt="myth" class="mythlogo"></a>
+    </div>
+
+    <div class="bigGround">
+        <a class="next" onclick="mythFuc()"><span id="Next">NEXT</span>
+            <img src="./人物/calli/CALLIC.jpg" alt="" class="imgC">
+            <img src="./人物/ina/inac.jpg" alt="" class="imgC">
+            <img src="./人物/kiara/kiarac.jpg" alt="" class="imgC">
+            <img src="./人物/gura/gurac.jpg" alt="" class="imgC">
+            <img src="./人物/ame/AMEC.webp" alt="" class="imgC" style="display:block ;">
+        </a>
+        <div class="chr">
+            <img src="./人物/4004_Gawr-Gura.png" alt="Gura" id="Gura" class="myth" ;">
+            <img src="./人物/4005_Watson-Amelia.png" alt="Ame" id="Ame" class="myth">
+            <img src="./人物/4001_Mori-Calliope.png" alt="Calli" id="Calli" class="myth">
+            <img src="./人物/4003_Ninomae-Inanis.png" alt="Ina" id="Ina" class="myth">
+            <img src="./人物/4002_Takanashi-Kiara.png" alt="Kiara" id="Kiara" class="myth">
+        </div>
+    </div>
+    <header>
+        <video src="./背景/myth3D.mp4" controls autoplay="autoplay" muted></video>
+        <div class="navlink">
+            <a href="./order.html">Order</a>
+            <a href="./login.html">Log in</a>
+            <a href="./official_goods.html">Official goods</a>
+            <a href="./member.html">Members</a>
+        </div>
+        <div class="title">Members</div>
+        <div class="mainbox">
+            <div class="name">
+                <div class="vtName"> Gawr Gura </div>
+                <div class="vtName"> Watson Amelia </div>
+                <div class="vtName"> Mori Calliope </div>
+                <div class="vtName"> Ninomae Ina’nis </div>
+                <div class="vtName"> Takanashi Kiara</div>
+            </div>
+            <div class="personTableup">
+                <table style="color: azure;" class="personTable">
+                    <caption><img src="./人物/gura/Gawr_Gura_Portrait.jpg" alt=""></caption>
+                    <tr>
+                        <th colspan="2">名字</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">本名</th>
+                        <th>噶嗚·古拉</th>
+                    </tr>
+                    <tr>
+                        <th>Gawr Gura</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="3">暱稱</th>
+                        <th>小屁鯊</th>
+                    </tr>
+                    <tr>
+                        <th>鯊皇</th>
+                    </tr>
+                    <tr>
+                        <th>鯊鯊</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">個人資料</th>
+                    </tr>
+                    <tr>
+                        <th>身高</th>
+                        <th>141cm</th>
+                    </tr>
+                    <tr>
+                        <th>體重</th>
+                        <th>秘密</th>
+                    </tr>
+
+                    <tr>
+                        <th>年齡</th>
+                        <th>9000以上</th>
+                    </tr>
+                    <tr>
+                        <th>生日</th>
+                        <th>6月20日</th>
+                    </tr>
+                    <tr>
+                        <th>星座</th>
+                        <th>雙子座</th>
+                    </tr>
+                    <tr>
+                        <th>口頭禪</th>
+                        <th> A </th>
+                    </tr>
+                    <tr>
+                        <th>繪師</th>
+                        <th><a href="https://twitter.com/amsrntk3"> Amashiro Natsuki</a></th>
+                    </tr>
+                    <tr>
+                        <th>粉絲名</th>
+                        <th>chumbuds</th>
+                    </tr>
+                    <tr>
+                        <th>Official Twitter:</th>
+                        <th><a href="https://twitter.com/gawrgura"></a>Gawr Gura🔱holoEN</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            youtube
+                        </th>
+                        <th>
+                            <a href="https://www.youtube.com/channel/UCoSrY_IQQVpmIRZ9Xf-y93g/about">
+                                Gawr Gura Ch. hololive-EN
+                            </a>
+                        </th>
+                    </tr>
+                </table>
+                <table style="color: azure;" class="personTable">
+                    <caption><img src="./人物/ame/Watson_Amelia_Portrait.jpg" alt=""></caption>
+                    <tr>
+                        <th colspan="2">名字</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">本名</th>
+                        <th>阿米莉亞·華生</th>
+                    </tr>
+                    <tr>
+                        <th>Watson Amelia</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">暱稱</th>
+                        <th>Ame &nbsp&nbsp&nbsp Watson</th>
+                    </tr>
+                    <tr>
+                        <th>阿梅&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp華生</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">個人資料</th>
+                    </tr>
+                    <tr>
+                        <th>身高</th>
+                        <th>150cm</th>
+                    </tr>
+                    <tr>
+                        <th>體重</th>
+                        <th>秘密</th>
+                    </tr>
+                    <tr>
+                        <th>年齡</th>
+                        <th>秘密</th>
+                    </tr>
+                    <tr>
+                        <th>生日</th>
+                        <th>1月6日</th>
+                    </tr>
+                    <tr>
+                        <th>星座</th>
+                        <th>摩羯座</th>
+                    </tr>
+                    <tr>
+                        <th>口頭禪</th>
+                        <th>Ground Pound </th>
+                    </tr>
+                    <tr>
+                        <th>繪師</th>
+                        <th><a href="https://twitter.com/nab0i">Nabi</a></th>
+                    </tr>
+                    <tr>
+                        <th>粉絲名</th>
+                        <th>teamates</th>
+                    </tr>
+                    <tr>
+                        <th>Official Twitter:</th>
+                        <th><a href="https://twitter.com/watsonameliaEN"></a> Watson Amelia🔎holoEN</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            youtube
+                        </th>
+                        <th>
+                            <a href="https://www.youtube.com/channel/UCyl1z3jo3XHR1riLFKG5UAg">
+                                Watson Amelia Ch. hololive-EN
+                            </a>
+                        </th>
+                    </tr>
+                </table>
+                <table style="color: azure;" class="personTable">
+                    <caption><img src="./人物/calli/MoriPortrait.jpg" alt=""></caption>
+                    <tr>
+                        <th colspan="2">名字</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">本名</th>
+                        <th>森 美聲</th>
+                    </tr>
+                    <tr>
+                        <th> Mori Calliope</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">別稱</th>
+                        <th> Calli </th>
+                    </tr>
+                    <tr>
+                        <th>死神</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">個人資料</th>
+                    </tr>
+                    <tr>
+                        <th>身高</th>
+                        <th>167cm</th>
+                    </tr>
+                    <tr>
+                        <th>體重</th>
+                        <th>秘密</th>
+                    </tr>
+                    <tr>
+                        <th>年齡</th>
+                        <th>死神沒有年齡</th>
+                    </tr>
+                    <tr>
+                        <th>生日</th>
+                        <th>4月4日</th>
+                    </tr>
+                    <tr>
+                        <th>星座</th>
+                        <th>牡羊座</th>
+                    </tr>
+                    <tr>
+                        <th>口頭禪</th>
+                        <th>TEEHEE GUH</th>
+                    </tr>
+                    <tr>
+                        <th>Official Twitter:</th>
+                        <th><a href="https://twitter.com/moricalliope"></a> Mori Calliope💀holoEN
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            youtube
+                        </th>
+                        <th>
+                            <a href="https://www.youtube.com/channel/UCL_qhgtOy0dy1Agp8vkySQg">
+                                Mori Calliope Ch. hololive-EN
+                            </a>
+                        </th>
+                    </tr>
+                </table>
+                <table style="color: azure;" class="personTable">
+                    <caption><img src="./人物/ina/NinomaePortrait.jpg" alt=""></caption>
+                    <tr>
+                        <th colspan="2">名字</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">本名</th>
+                        <th>一 伊那尓栖</th>
+                    </tr>
+                    <tr>
+                        <th> Ninomae Ina’nis</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="3">別稱</th>
+                        <th>ina &nbsp&nbsp&nbsp&nbsp taco </th>
+                    </tr>
+                    <tr>
+                        <th>伊娜 &nbsp&nbsp&nbsp&nbsp 章魚</th>
+                    </tr>
+                    <tr>
+                        <th> 祭司 , 唐鳳</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">個人資料</th>
+                    </tr>
+                    <tr>
+                        <th>身高</th>
+                        <th>157cm</th>
+                    </tr>
+                    <tr>
+                        <th>體重</th>
+                        <th>秘密</th>
+                    </tr>
+                    <tr>
+                        <th>年齡</th>
+                        <th>unknown</th>
+                    </tr>
+                    <tr>
+                        <th>生日</th>
+                        <th>5月20日</th>
+                    </tr>
+                    <tr>
+                        <th>星座</th>
+                        <th>金牛座</th>
+                    </tr>
+                    <tr>
+                        <th>口頭禪</th>
+                        <th>Wah</th>
+                    </tr>
+                    <tr>
+                        <th>繪師</th>
+                        <th><a href="https://twitter.com/kuroboshi"> Kuroboshi Kouhaku</a></th>
+                    </tr>
+                    <tr>
+                        <th>粉絲名</th>
+                        <th>tentacult</th>
+                    </tr>
+                    <tr>
+                        <th>Official Twitter:</th>
+                        <th><a href="https://twitter.com/ninomaeinanis"></a> Ninomae Ina’nis🐙holoEN
+
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            youtube
+                        </th>
+                        <th>
+                            <a href="https://www.youtube.com/channel/UCMwGHR0BTZuLsmjY_NT5Pwg">
+                                Ninomae Ina'nis Ch. hololive-EN
+                            </a>
+                        </th>
+                    </tr>
+                </table>
+                <table style="color: azure;" class="personTable">
+                    <caption><img src="./人物/kiara/Takanashi_Kiara_Portrait.jpg" alt=""></caption>
+                    <tr>
+                        <th colspan="2">名字</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">本名</th>
+                        <th>小鳥遊 キアラ</th>
+                    </tr>
+                    <tr>
+                        <th>Takanashi Kiara</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="3">別稱</th>
+                        <th>店長 </th>
+                    </tr>
+                    <tr>
+                        <th>火雞</th>
+                    </tr>
+                    <tr>
+                        <th> 臭鳥</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">個人資料</th>
+                    </tr>
+                    <tr>
+                        <th>身高</th>
+                        <th>165cm</th>
+                    </tr>
+                    <tr>
+                        <th>體重</th>
+                        <th>秘密</th>
+                    </tr>
+                    <tr>
+                        <th>年齡</th>
+                        <th>unknown</th>
+                    </tr>
+                    <tr>
+                        <th>生日</th>
+                        <th>7月6日</th>
+                    </tr>
+                    <tr>
+                        <th>星座</th>
+                        <th>巨蟹座</th>
+                    </tr>
+                    <tr>
+                        <th>口頭禪</th>
+                        <th>ARA ARA</th>
+                    </tr>
+                    <tr>
+                        <th>繪師</th>
+                        <th><a href="https://twitter.com/hukeweb">huke</a></th>
+                    </tr>
+                    <tr>
+                        <th>粉絲名</th>
+                        <th>kfp</th>
+                    </tr>
+                    <tr>
+                        <th>Official Twitter:</th>
+                        <th><a href="https://twitter.com/takanashikiara"></a> Takanashi Kiara🐔
+
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            youtube
+                        </th>
+                        <th>
+                            <a href="https://www.youtube.com/channel/UCHsx4Hqa-1ORjQTh9TYDhww">
+                                Takanashi Kiara Ch. hololive-EN
+                            </a>
+                        </th>
+                    </tr>
+                </table>
+
+
+            </div>
+
+            <div class="express">
+                <div>
+                    <div class="content" style="display:block ;">
+                        <h2> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            噶嗚·古拉</h2>
+                        <img src="./人物/gura/GawrGura_-_Logo.jpg" alt="">
+                        <p style="font-size: 3vw; color: blue;">
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            A
+                        </p>
+                        噶嗚·古拉（英語：Gawr Gura；日語：がうる・ぐら）<br>
+                        是VTuber團體hololive English（hololive EN）的 <br>
+                        一期生成員，於2020年9月開始活動。<br>
+                        <h2>簡介</h2>
+                        <br>
+                        叫喊著「海底真是無聊透頂」而來到陸地上的亞特蘭蒂斯 <br>
+                        的後裔。身上穿著的中意的衣服（含鯊魚頭套）是在日本 <br>
+                        買的。據本人說有空的時候喜歡和海洋生物聊天。 <br>
+                        <br>
+                        藍色的鯊魚外套，形象圖旁跟著一隻叫做 Bloop 的鯊魚。 <br>
+                        名字可能起源於「海洋怪聲」，美國國家海洋及大氣管理局 <br>
+                        於1997年夏天在南太平洋偵測到的超低頻深海聲音訊號。據 <br>
+                        本人稱，Bloop 是備用糧食
+                        <h2>活動歷程</h2>
+                        <h3>2020</h3>
+                        <ul>
+                            <li>
+                                9月9日，hololive宣布hololive English一期生的出道，分別 <br>
+                                為噶嗚·古拉、森美聲、一伊那爾棲、小鳥遊琪亞拉、阿米莉亞· <br>
+                                華生。同日推特和YouTube頻道開始公開。 <br>
+                                同日推特開始活動，發表第一條推文
+                            </li>
+                            <li>
+                                9月13日，舉辦初配信。同日YouTube平台的訂閱數達到銀盾10萬。
+                            </li>
+                            <li>
+                                9月18日，Youtube平台收益化通過。
+                            </li>
+                            <li>
+                                9月26日，YouTube平台的訂閱數達到50萬。
+                            </li>
+                            <li>
+                                10月22日，YouTube平台的訂閱數達到金盾100萬，成為hololive中 <br>
+                                第一位達成百萬訂閱的成員，也是VTuber中繼絆愛和輝夜月後第三人。
+                            </li>
+                        </ul>
+                        <h3>2021
+                        </h3>
+                        <ul>
+                            <li>1月18日，YouTube平台的訂閱數達到200萬，成為hololive中第一位<br>
+                                達成兩百萬訂閱的成員，也是全球訂閱數僅次於絆愛的Vtuber 。</li>
+                            <li>
+                                5月7日，發表新衣裝「休閒服」
+                            </li>
+                            <li>
+                                6月21日，發表個人第一首原創曲「REFLECT」
+                            </li>
+                            <li>
+                                截至7月1日，YouTube平台訂閱數已達到297萬 ，超越
+                                A.I.Channel成為全球訂閱人數最多的VTuber。
+                            </li>
+                            <li>
+                                10月21日，YouTube平台的訂閱數達到350萬。
+                            </li>
+                        </ul>
+                        <h3>2022</h3>
+                        <ul>
+                            <li>
+                                1月9日，發表正月新衣裝「和服」
+                            </li>
+                            <li>
+                                2月4日，發表與Calli合唱的原創曲「Q」。
+                            </li>
+                            <li>
+                                3月19日，作為hololive的一員參加「hololive 3rd Fes. "Link Your Wish"」<br>
+                                之第一天的演唱會活動。
+                            </li>
+                            <li>
+                                6月16日，YouTube平台的訂閱數達到400萬，成為第一位達成四百萬訂閱的Vtuber
+                            </li>
+                        </ul>
+                        <h2>個人相關</h2>
+                        <ul>
+                            <li>
+                                每次被問到年齡時的答案都不一樣，起初在首播時聲稱自己9361歲，之後填表時寫的是9927歲，到英語組第一次聯動時又說自己9935歲。
+                            </li>
+                            <li>
+                                生日是6月20日，也是電影《大白鯊》上映的日子。
+                            </li>
+                            <li>
+                                很可能不會游泳，據說在水中必須使用游泳圈。
+                            </li>
+                            <li>
+                                Holo音遊天花板之一，直播中的Muse Dash力超強，聲稱自己玩了500小時以上
+                            </li>
+                            <li>
+                                數學不好。
+                            </li>
+                        </ul>
+                        <h2>直播相關</h2>
+                        <ul>
+                            <li>
+                                第一條推文就只有一個 “a” 字，令人紛紛猜測是什麼意思。
+                            </li>
+                            <li>
+                                首播當天因為網絡問題遲到16分鐘，並在只說一個 “a” 字後假裝結束直播。
+                            </li>
+                            <li>
+                                首播後半段唱歌環節以一曲山下達郎的“Ride On Time”驚艷世界，老宅們紛紛表示無比感動，表示這年頭還有人記得山下達郎的歌實在是難得。
+                            </li>
+                            <li>
+                                與Takanashi Kiara的德語學習直播中，把“one to five”理解成了“one two five"，並且長時間沒有領會到自己理解錯了。
+                            </li>
+                            <li>
+                                2021年5月7日的新衣裝公開直播中，最高同接數高達19,4280人，一度成為Youtube平台VTuber直播史上最高。
+                            </li>
+                            <li>
+                                2021年6月21日，發表第一首原創歌曲〈REFLECT〉，不到24小時即突破百萬收看，打破先前所有同社Vtuber原創曲的百萬收看紀錄。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="content">
+                        <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            阿米莉亞·華生</h2>
+                        <img src="./人物/ame/ameLOGO.png" alt="">
+                        <p style="font-size: 3vw; color:gold;">
+                            &nbsp&nbsp&nbsp&nbsp
+                            Ground pound!
+                        </p>
+                        阿米莉亞·華生（英語：Watson Amelia；日語：ワトソン・アメリア）<br>
+                        是VTuber團體hololive English（hololive EN）的一期生 <br>
+                        成員，於2020年9月開始活動。<br>
+                        <h2>簡介</h2>
+                        會說話的狐狸、魔法松鼠、超人狗狗等等，對網絡上各種關於 <br>
+                        hololive的奇聞軼事感到好奇的她，在調查這些傳聞的過程中 <br>
+                        ，自己也萌生了成為偶像的想法。閒暇時間喜歡玩鍛鍊反射神 <br>
+                        經的射擊和解謎類遊戲。 姓氏來自著名小說福爾摩斯探案的助 <br>
+                        手華生，作為一個比讀者還要笨一點點的甘草角色存在
+                        <h2>活動歷程</h2>
+                        <h3>2020</h3>
+                        <ul>
+                            <li>
+                                9月9日，hololive宣布hololive English一期生的出道
+                            </li>
+                            <li>
+                                9月13日，進行初配信。
+                            </li>
+                            <li>
+                                10月25日，YouTube平台的訂閱數達到50萬。
+                            </li>
+                            <li>
+                                12月23日，YouTube平台的訂閱數達到80萬。
+                            </li>
+                        </ul>
+                        <h3>2021</h3>
+                        <ul>
+                            <li>
+                                2月11日，YouTube平台的訂閱數達到100萬，為hololive旗下第九位達到金盾的VTuber。
+                            </li>
+                            <li>
+                                10月31日，YouTube平台的訂閱數達到150萬。
+                            </li>
+                            <li>
+                                12月11日，發表新衣裝「禮服」
+                            </li>
+                        </ul>
+                        <h3>2022</h3>
+                        <ul>
+                            <li>
+                                1月9日，發表正月新衣裝「和服」
+                            </li>
+                            <li>
+                                1月25日，YouTube平台的訂閱數達到160萬。
+                            </li>
+                            <li>
+                                3月19日，作為hololive的一員參加「hololive 3rd Fes. "Link Your Wish"」之第一天的演唱會活動。
+                            </li>
+                        </ul>
+                        <h2>個人相關</h2>
+                        <ul>
+                            <li>
+                                由於角色是以《福爾摩斯系列》中的華生為原型，在出道之前，有很多人都猜測她應該帶有濃烈的英倫腔，<br>
+                                但到了初配信時，英國口音僅僅維持數秒，之後便一直全程美式口音。本人辯稱這只是在調查時掩飾自己身分的手段。
+                            </li>
+                            <li>
+                                還沒開始接觸Minecraft時自稱並不喜歡玩這類型的遊戲，後來和EN組聯動馬上沉迷，自此大家上線都一定會看到阿梅在遊戲中
+                            </li>
+                            家裡有養寵物，兩隻狗分別叫Bubba和Mikki，貓的名字叫Wellington，最近又多了一隻小貓叫Henry。
+                        </ul>
+                        <h2>阿梅經歷整理：</h2>
+                        <ol>
+                            <li>
+                                小時候滑倒差點咬斷舌頭導致舌頭上有傷口。
+                            </li>
+                            <li>
+                                和弟弟在床上玩的時候摔下去頭撞到櫥櫃，從此留下傷疤,本人稱自己呼吸時會感受得到自己的傷口。
+                            </li>
+                            <li>
+                                父母把自己留在車上（車內溫度高到蠟筆融化）。
+                            </li>
+                            <li>
+                                被球砸到臉，掉了三顆牙齒。
+                            </li>
+                            <li>
+                                被狗咬傷臉、手和手臂（差點咬到喉嚨）。
+                            </li>
+                            <li>
+                                腳踝被車子碾過，周遭的皮膚被蹭破。
+                            </li>
+                            <li>
+                                聽演唱會時太靠近音響而導致聽力永久性損傷。
+                            </li>
+                            <li>
+                                在重金屬搖滾演唱會的推擠區(Mosh Pit)被大個子撞倒而骨折。
+                            </li>
+                            <li>
+                                在重金屬搖滾演唱會的推擠區(Mosh Pit)被大個子撞倒而骨折。
+                            </li>
+                            <li>
+                                祖母年輕時喜歡勾搭人夫，導致家族被詛咒。
+                            </li>
+                            <li>
+                                曾有一次因為名字跟大略特徵與另一名陌生人相同，差點被尋人的私家偵探擄走。
+                            </li>
+                            <li>
+                                媽媽曾在摩洛哥被綁架，最後付了$300才被釋放，據母親所言當時綁匪們還算挺善待她的。
+                            </li>
+                            <li>
+                                小時候曾想過使用兩張垃圾袋充當滑翔翼從樓梯上跳下來，但實行前被阿姨及時阻止。
+                            </li>
+                            <li>
+                                哥哥為了要把模型斷掉的腳黏回去而嘗試微波來燒熔塑膠，結果引發火警。<br>
+                                據媽媽回憶，當時她躲在衣櫃裡差點悶死，最後是消防員將她帶了出來。
+                            </li>
+                        </ol>
+                        <h2>直播相關</h2>
+                        <ul>
+                            <li>
+                                在初配信整活，給觀眾打了一針之後玩了整整7分鐘陰間濾鏡（模擬磕大了之後產生的幻覺），<br>
+                                讓觀眾直呼“我San值沒了”、“你才是古神吧？”
+                            </li>
+                            <li>
+                                魔幻過頭的初次登場導致觀眾評價兩極，但後續的聯動與其他直播中則展現了清晰的口條、良好 <br>
+                                的氣氛協調能力、幽默而綜藝的FPS遊玩效果，且遊戲時音量過大或不小心口出暴言時都會有禮 <br>
+                                的道歉，一度讓觀眾困惑到底該將阿梅歸類在秩序陣營還是混亂陣營。
+                            </li>
+                            <li>
+                                讓許多hololive成員玩起把腳放在桌上的始作俑者。
+                            </li>
+                            <li>
+                                於2021年6月6日，在Youtube上替美國「最好的朋友動物協會」(Best Friends Animal Society) <br>
+                                進行了長達9小時的公益募款直播, 在直播開始10分鐘前就超前完成了當日原先預期的25,000美金的目標
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="content">
+                        <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            森美聲</h2>
+                        <img src="./人物/calli/MoriCalliope_-_Logo.jpg" alt="">
+                        <p style="font-size: 3vw; color:pink;">
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            Guh
+                        </p>
+                        森美聲（英語：Mori Calliope；日語：森カリオペ／もりかりおぺ）<br>
+                        是VTuber團體hololive English（hololive EN）的一期生 <br>
+                        成員，於2020年9月開始活動。 <br>
+                        <h2>簡介</h2>
+                        死神的大弟子。在醫療發達的現代世界，作為死神沒什麼用武之地 <br>
+                        ，所以她似乎打算通過虛擬主播的活動收割他人的靈魂。被萌死的 <br>
+                        不同，她其實是一個充滿愛心和善良的人。
+                        <h2>活動歷程</h2>
+                        <h3>2020</h3>
+                        <ul>
+                            <li>
+                                9月9日，hololive宣布hololive English一期生的出道
+                            </li>
+                            <li>
+                                9月12日，在Youtube進行首次出道直播，並發表出道專輯《DEAD BEATS》。
+                            </li>
+                            <li>
+                                10月22日，YouTube平台的訂閱數達到50萬。
+                            </li>
+                            <li>
+                                11月1日，發布新原創歌曲MV〈Cursed Night〉
+                            </li>
+                            <li>
+                                12月15日，YouTube平台的訂閱數達到80萬。
+                            </li>
+                        </ul>
+                        <h3>
+                            2021
+                        </h3>
+                        <ul>
+                            <li>
+                                1月7日，YouTube平台的訂閱數達到90萬。
+                            </li>
+                            <li>
+                                1月25日，YouTube平台的訂閱數達到100萬，為hololive旗下第七位達到金盾的VTuber。
+                            </li>
+                            <li>
+                                2月1日，發布新原創歌曲MV〈Off With Their Heads〉。
+                            </li>
+                            <li>
+                                4月4日，發布新曲MV〈Red〉與生日紀念專輯《Your Mori.》。
+                            </li>
+                            <li>
+                                5月3日，發表新衣裝。
+                            </li>
+                            <li>
+                                12月9日，發表新衣裝「晚禮服」
+                            </li>
+                        </ul>
+                        <h3>2022</h3>
+                        <ul>
+                            <li>
+                                1月9日，發表正月新衣裝「和服」
+                            </li>
+                            <li>
+                                2月4日，發表與Gura合唱的原創曲「Q」。
+                            </li>
+                            <li>
+                                3月20日，作為hololive的一員參加「hololive 3rd Fes. "Link Your Wish"」之第二天的演唱會活動。
+                            </li>
+                            <li>
+                                3月21日，發表個人首張完整專輯《UnAlive》。
+                            </li>
+                            <li>
+                                6月12日，參加「V-Carnival VOL.2」之第二天活動
+                            </li>
+                        </ul>
+                        <h2>個人相關</h2>
+                        <ul>
+                            <li>
+                                氏來自拉丁文諺語 “Memento Mori”，意思是「勿忘人終有一死」；而名字則是來自希臘神話里掌管英雄史詩的繆斯女神卡利俄佩。而漢字「美聲」則是Calliope的意譯。
+                            </li>
+                            <li>
+                                因為自古以來已經存在於這個世界上，所以沒有時間的觀念，年齡對她來說沒有意義。而且只要世上還有事物死去，她就會一直存在。
+                            </li>
+                            <li>
+                                嘻哈系偶像，初配信時表演了一段自我介紹Freestyle Rap，更發布了出道紀念專輯。
+                            </li>
+                        </ul>
+                        <h2>直播相關</h2>
+                        <ul>
+                            <li>
+                                初配信時發布了一首原創Rap歌曲《不好意思，請你去死吧》 只過了5天，觀看次數已破100萬
+                            </li>
+                            <li>
+                                對於觀眾一窩蜂投來的SC會感到鴨梨山大。
+                            </li>
+                            <li>
+                                2020年11月14日，成為Gigguk、The Anime Man、CDawgVA主持的播客節目《Trash Taste》的嘉賓。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="content">
+                        <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            一伊那爾棲</h2>
+                        <img src="./人物/ina/INALOGO.jpg" alt="">
+                        <p style="font-size: 3vw; color:purple;">
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            Wah!
+                        </p>
+                        一伊那爾棲（英語：Ninomae Ina’nis；日語：一伊那尓栖／にのまえ <br>
+                        いなにす）是VTuber團體hololive English（hololive EN）的 <br>
+                        一期生成員，於2020年9月開始活動。 <br>
+                        <h2>簡介</h2>
+                        雖然看不太出來，但卻是貨真價實的古神的祭司。某日撿到了一本 <br>
+                        「奇怪的書」後獲得了操控觸手的能力。對其本人而言觸手只是日 <br>
+                        常生活的一部分。不過，少女心的她連觸手都想給它打扮打扮。 <br>
+                        自從獲得這個力量以來，就有遠古之聲給她傳來低語和天啟，純潔 <br>
+                        而又平凡的她似乎正通過VTuber活動削減人們的SAN值。
+                        <h2>活動歷程</h2>
+                        <h3>2020</h3>
+                        <ul>
+                            <li>
+                                9月9日，hololive宣布hololive English一期生的出道
+                            </li>
+                            <li>
+                                月13日，在Youtube進行首次直播，同日YouTube平台的訂閱數達到10萬。
+                            </li>
+                            <li>
+                                12月11日，YouTube平台的訂閱數達到60萬。
+                            </li>
+                        </ul>
+                        <h3>2021</h3>
+                        <ul>
+                            <li>
+                                5月6日，發表新衣裝
+                            </li>
+                            <li>
+                                5月28日，YouTube平台的訂閱數達到100萬，為Hololive旗下第15位達到金盾的Vtuber。
+                            </li>
+                            <li>
+                                8月5日，發表第一首原創曲「VIOLET」
+                            </li>
+                            <li>
+                                12月12日，發表新衣裝「禮服」
+                            </li>
+                        </ul>
+                        <h3>2022</h3>
+                        <ul>
+                            <li>
+                                1月9日，發表正月新衣裝「和服」
+                            </li>
+                            <li>
+                                3月19日，作為hololive的一員參加「hololive 3rd Fes. "Link Your Wish"」之第一天的演唱會活動。
+                            </li>
+                            <li>
+                                5月2日，YouTube平台的訂閱數達到140萬。
+                            </li>
+                        </ul>
+                        <h2>個人相關</h2>
+                        <ul>
+                            <li>
+                                儘管有觸手，其實是人類。觸手並非長在身上，而是從背後的虛空中伸出來的，所以可以不出現。
+                            </li>
+                            <li>
+                                會說英語，日語，和韓語三種語言。
+                            </li>
+                            <li>
+                                雙重意義上的觸手，Hololive English PV中一期生的圖以及森美聲出道迷你專輯的封面均為她的作品。
+                            </li>
+                            <li>
+                                因集合了畫畫、觸手、克蘇魯等要素，以及爸爸為黑星紅白的緣故，在其b站官方頻道投稿的Youtube初次直播視頻中被月球DD們稱呼為北齋。
+                            </li>
+                            <li>
+                                喜歡玩諧音梗，例如會把雜談說成 "Tako-bout" （日文「章魚」和英文 "talk about" 的結合）。
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+                <div></div>
+                <div>
+                    <div class="content">
+                        <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            小鳥遊琪亞拉</h2>
+                        <img src="./人物/kiara/TakanashiKiara_-_Logo.jpg" alt="">
+                        <p style="font-size: 3vw; color:orangered;">
+                            &nbsp&nbsp
+                            KIKKERIKIII!!!
+                        </p>
+                        小鳥遊琪亞拉（英語：Takanashi Kiara；日語：小鳥遊キアラ <br>
+                        ／たかなし きあら）是VTuber團體hololive English <br>
+                        （hololive EN）的一期生成員，於2020年9月開始活動。<br>
+
+                        <h2>簡介</h2>
+
+                        夢想成為快餐連鎖店店主的偶像。是鳳凰，不是雞也不是火雞 <br>
+                        （重要）反正可以涅槃重生，所以抱著必死的信念努力工作著。 <br>
+                        穿著快餐店制服，頭上有兩頂帽子，一頂為快餐店的貝雷帽，另 <br>
+                        一頂為廚師帽。腰帶可以讓琪亞拉變身為不死鳥形態，但是在這 <br>
+                        個世界被禁止使用。戰鬥時以劍和盾牌作武器。最終型態的武器 <br>
+                        是炸雞腿。
+                        <h2>活動歷程</h2>
+                        <h3>2020</h3>
+                        <ul>
+                            <li>
+                                9月9日，hololive宣布hololive English一期生的出道
+                            </li>
+                            <li>
+                                9月12日，在Youtube進行初配信。
+                            </li>
+                            <li>
+                                11月26日，發表個人第一首原創曲「HINOTORI」。
+                            </li>
+                            <li>
+                                12月12日，YouTube平台的訂閱數達到60萬。
+                            </li>
+                        </ul>
+                        <h3>2021</h3>
+                        <ul>
+                            <li>
+                                2月14日，發表第二張原創曲「Heart Challenger」
+                            </li>
+                            <li>
+                                5月5日，發表新衣裝 「夏季衣裝」
+                            </li>
+                            <li>
+                                5月19日，因為Ina睡過頭，所以進行了救場直播，持續了接近兩小時
+                            </li>
+                            <li>
+                                5月30日，YouTube平台的訂閱數達到100萬，為Hololive旗下第16位達到金盾的Vtuber
+                            </li>
+                            <li>
+                                發表個人第三首原創曲「SPARKS」
+                            </li>
+                            <li>
+                                12月13日，發表新衣裝「禮服」
+                            </li>
+                        </ul>
+                        <h3>2022</h3>
+                        <ul>
+                            <li>
+                                1月9日，發表正月新衣裝「和服」
+                            </li>
+                            <li>
+                                3月20日，作為hololive的一員參加「hololive 3rd Fes. "Link Your Wish"」之第二天的演唱會活動。
+                            </li>
+                            <li>
+                                6月12日，發表百萬訂閱紀念新衣裝 <br>
+                                同日，開設德語專用副頻道。
+                            </li>
+                        </ul>
+                        <h2>個人相關</h2>
+                        <ul>
+                            <li>
+                                因為是不死鳥，實際上經過多次重生後早已忘掉自己幾時出生的，會把生日訂在這個日子是因為當天是國際炸雞日
+                            </li>
+                            <li>
+                                奧地利出身，所以母語是德語。此外因為在日本居住的關係，日語也十分流利；說曾經學過中文，也會少許義大利文。
+                            </li>
+                            <li>
+                                最仰慕的前輩是兔田佩克拉。
+                            </li>
+                            <li>
+                                2021年成為《破曉傳說》（Tales of Arise）的宣傳大使，自稱從小就很喜歡傳說系列，非常高興和做夢一樣
+                            </li>
+                        </ul>
+                        <h2>直播相關</h2>
+                        <ul>
+                            <li>
+                                初配信的片頭動畫是森大人幫忙製作的，亦由森大人旁白，而圖像則是自己繪製的。
+                            </li>
+                            <li>
+                                在EN組裡，和伊那同屬喜歡說冷笑話的人。
+                            </li>
+                            <li>
+                                出名的離題女王，目前最高紀錄是SC直播用了73分鐘才開始第一條SC。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </header>
+
+    <article></article>
+    <script>
+        $("body").css("background-image", "url(./背景/BG/gura0.jpg)")
+        let slideindex1 = 0;
+        let slideindex2 = 1;
+        function mythFuc() {
+            var slide = document.getElementsByClassName("myth");
+            var vtName = document.getElementsByClassName("vtName");
+            var content = document.getElementsByClassName("content");
+            var table = document.getElementsByClassName("personTable");
+            var imgC = document.getElementsByClassName("imgC");
+
+            switch (slideindex1) {
+                case 0:
+                    $("body").css("background-image", "url(./背景/BG/ame01.jpg)")
+                    break
+                case 1:
+                    $("body").css("background-image", "url(./背景/BG/calli05.jpg)")
+                    break
+                case 2:
+                    $("body").css("background-image", "url(./背景/BG/ina04.png)")
+                    break
+                case 3:
+                    $("body").css("background-image", "url(./背景/BG/kiara05.jpg)")
+                    break
+                case 4:
+                    $("body").css("background-image", "url(./背景/BG/gura0.jpg)")
+                    break
+            }
+
+
+
+            for (var i = 0; i < slide.length; i++) {
+                slide[i].style.display = "none"
+            };
+            for (var i = 0; i < slide.length; i++) {
+                vtName[i].style.display = "none"
+            };
+            for (var i = 0; i < slide.length; i++) {
+                content[i].style.display = "none"
+            };
+            for (var i = 0; i < slide.length; i++) {
+                table[i].style.display = "none"
+            };
+            for (var i = 0; i < slide.length; i++) {
+                imgC[i].style.display = "none"
+            };
+
+            for (var i = 0; i < slide.length; i++) {
+                slide[i].className = slide[i].className.replace(" move1", "")
+            };
+            for (i = 0; i < slide.length; i++) {
+                slide[i].className = slide[i].className.replace(" move2", "")
+            };
+
+            slide[slideindex1].style.display = "block";
+            slide[slideindex1].className += " move1";
+
+            vtName[slideindex2].style.display = "block";
+            content[slideindex2].style.display = "block";
+            table[slideindex2].style.display = "block";
+            imgC[slideindex1].style.display = "block";
+
+            slide[slideindex2].style.display = "block";
+            slide[slideindex2].className += " move2";
+
+            if (slideindex1 == 4) { slideindex1 = -1 };
+            if (slideindex2 == 4) { slideindex2 = -1 };
+
+            slideindex1 += 1;
+            slideindex2 += 1;
+        }
+
+        // 至頂自動卷軸
+        $("#shougongBtn").click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 500)
+
+        })
+        // 顯示使用者名稱   
+        if (localStorage.getItem("firstName") != 0) {
+            console.log("asd")
+            $("#logfirstName").text(localStorage.getItem("firstName"));
+        }
+        // 如果有使用者跳轉到成功訂單
+        $("#logfirstName").click(
+            function () {
+                if (localStorage.getItem("firstName") != 0) {
+                    location.href = "./successOrder.html"
+                }
+            }
+        )
+    </script>
+
+</body>
+
+</html>

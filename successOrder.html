@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navlink {
+            position: fixed;
+            top: 0%;
+            right: 0%;
+            z-index: 5;
+            /* background-color: black; */
+            background: radial-gradient(circle farthest-corner at left, white, blue);
+            width: 100%;
+        }
+
+        .navlink a {
+            text-decoration: none;
+            color: white;
+            background-color: none;
+            padding-top: 2vw;
+            padding-bottom: 2vw;
+            border-color: rgb(243, 238, 238);
+            padding: auto;
+            margin: -2px;
+            /* float向右排列 */
+            float: right;
+            text-align: center;
+            width: 12vw;
+            font-size: 1vw;
+
+        }
+
+        .mythlogo {
+            opacity: 0.7;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12vw;
+            height: 12vw;
+            z-index: 6;
+        }
+
+        .navlink a:hover {
+            color: black;
+            background-color: white;
+            border-radius: 2cm;
+        }
+
+        body {
+            background-image: url(./背景/blue-snow.jpg);
+        }
+
+        .successBox {
+            position: relative;
+            top: 20vh;
+            left: 30vw;
+            width: 40vw;
+            background-color: aliceblue;
+            border-color: black;
+            border-style: solid;
+        }
+
+        h3,
+        h2,
+        div {
+            text-align: center;
+
+        }
+        /* footer{
+            position: relative;
+            bottom:0 ;
+            height:50vh;
+            background-color: cornflowerblue;
+        } */
+        footer div{
+            position: absolute;
+            top: 130vh;
+            width: 100vw;
+            left: 0;
+            height: 15vh;
+            text-align: center;
+            background-color: aquamarine;
+        }
+         /* 登入者姓名 */
+         #logfirstName{
+            position: fixed;
+            top: 4vh;
+            left: 20vw;
+            z-index: 999;
+            color: black;
+            width: 10vw;
+            font-size: 30px;
+        }
+    </style>
+    <script src="./_js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <div id="logfirstName"></div>
+    <div><a href="./frontpage.html">
+            <img src="./背景/holomyth01.jpg" alt="myth" class="mythlogo"></a>
+    </div>
+    <div class="navlink">
+        <a href="./order.html">Order</a>
+        <a href="./login.html">Log in</a>
+        <a href="./official_goods.html">Official goods</a>
+        <a href="./member.html">Members</a>
+    </div>
+    <div class="successBox">
+        <div>
+            <br>
+            <h2>運送方式</h2>
+            <br>
+            <div id="SentWay"></div>
+            <br><br>
+            <h3> 運送地點</h3>
+            <br>
+            <div id="Address"></div>
+            <br>
+            <br>
+            <hr>
+            <h2>付款方式</h2>
+            <br>
+            <div id="PayWay"></div>
+            <br><br>
+
+            <h2 id="Sum"></h2>
+            <br>
+            <hr>
+            <h2>訂單編號</h2>
+            <div id="orderNumber"></div>
+            <br><br><br>
+            <h3>給商家的話</h3>
+            <br>
+            <div id="Toseller"></div>
+
+        </div>
+    </div>
+    
+    <footer>
+        <div class="bot"><br><br>
+            客服專線|常見問題|交易安全|會員合約|隱私權聲明
+            <br><br>
+            客服專線時間:012456789 服務時間週一 ~ 日 9:00 ~ 18:00
+            <br>
+        </div>
+
+    </footer>
+
+
+
+    <script>
+        console.log(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",][Math.floor(Math.random() * 10) + 1]
+            + Math.floor(Math.random() * 10000000));
+        var sum = localStorage.getItem("total");
+        var sentWay = localStorage.getItem("sentWay");
+        var payWay = localStorage.getItem("payWay");
+        var addr = localStorage.getItem("addr");
+        var haddr = localStorage.getItem(" hAddr");
+        var toSeller = localStorage.getItem("toSeller");
+        $("#SentWay").text(sentWay);
+        $("#PayWay").text(payWay);
+        $("#Sum").text(`商品小計:NT$${sum}元`);
+        $("#Toseller").text(toSeller);
+        if (addr != 0) {
+            $("#Address").text(addr);
+        }
+        else $("#Address").text(haddr);
+        $("#orderNumber").text(localStorage.getItem("ran"));
+
+        if (localStorage.getItem("firstName")!=0){
+        console.log("asd")
+        $("#logfirstName").text(localStorage.getItem("firstName"));
+       }
+    </script>
+</body>
+
+</html>

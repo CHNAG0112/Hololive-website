@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .aa {
+            position: relative;
+            background-color: aqua;
+            height: 100vw;
+            margin: 0%;
+        }
+
+        .aa img {
+            position: relative;
+            left: 0vw;
+            margin: 0%;
+            border-style: dashed;
+
+        }
+
+        .bb {animation-name: as;
+        animation-duration: 5000ms;
+        animation-delay: 0ms;
+    animation-iteration-count: infinite;
+
+}
+
+        @keyframes as {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="aa">
+        <a  onclick="pfuc()"><img src="./人物/4002_Takanashi-Kiara.png"class="people" alt="">
+        </a>
+    </div>
+    
+    <script>
+        function pfuc(){
+            var aa = document.getElementsByClassName("people");
+            console.log(aa[0]);
+            var bb
+            aa[0].className += " bb";
+            // 超級重要加class的時候要空一格"bb"會出錯 要" bb"
+            console.log(aa[0].);
+            // 
+        }
+    
+    </script>
+</body>
+
+</html>

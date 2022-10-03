@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navlink {
+            position: fixed;
+            top: 0%;
+            right: 0%;
+            z-index: 5;
+            /* background-color: black; */
+            background: radial-gradient(circle farthest-corner at left, white, grey);
+            width: 100%;
+        }
+
+        .navlink a {
+            text-decoration: none;
+            color: white;
+            background-color: none;
+            padding-top: 2vw;
+            padding-bottom: 2vw;
+            border-color: rgb(243, 238, 238);
+            padding: auto;
+            margin: -2px;
+            /* float向右排列 */
+            float: right;
+            text-align: center;
+            width: 12vw;
+            font-size: 1vw;
+
+        }
+
+        .mythlogo {
+            opacity: 0.7;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12vw;
+            height: 12vw;
+            z-index: 6;
+        }
+
+        .navlink a:hover {
+            color: black;
+            background-color: white;
+            border-radius: 2cm;
+        }
+
+        body {
+            background-color: rgb(238, 228, 228);
+            background-image: url(./背景/leaves.jpg);
+            display: grid;
+            grid-template-rows: 1fr auto;
+        }
+
+        /* 商品內文 */
+        #order {
+            /* position: absolute;
+            width: 20vw;
+            top: 30vh;
+            left: 15vw; */
+            color: black;
+            position: relative;
+            width: 40vw;
+            font-size: 3vh;
+            line-height: 4vh;
+            font-family: 'Courier New', Courier, monospace;
+            /* 以下三個要同時設定才能防止自動換行把多出來的文字變成... */
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        #number {
+
+            color: black;
+            font-size: 3vh;
+            line-height: 4vh;
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        #numText {
+            color: black;
+            width: 5vw;
+            font-size: 3vh;
+            line-height: 4vh;
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        /* 價錢 */
+        #price {
+            color: black;
+            font-size: 3vh;
+            line-height: 4vh;
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        /* 價錢內文  */
+        #priceText {
+            color: black;
+            font-size: 3vh;
+            line-height: 4vh;
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        /* 裝著結帳跟小紀的DIV */
+        #leftBox {
+            position: fixed;
+            left: 73vw;
+            top: 25vh;
+            background-color: aliceblue;
+            width: 25vw;
+            height: 30vh;
+            z-index: 6;
+            border-radius: 20px;
+            border-style: solid;
+        }
+
+        /* 小計 */
+        #total {
+            color: black;
+            font-size: 25px;
+            line-height: 4vh;
+            font-family: 'Courier New', Courier, monospace;
+            position: absolute;
+            top: 10vh;
+            width: 25vw;
+            text-align: center;
+        }
+
+        /*  結帳 中文字 */
+        #checkout {
+            position: absolute;
+            bottom: 2vh;
+            width: 22vw;
+            margin-left: 2vw;
+            margin-right: 2vw;
+            color: black;
+            text-align: center;
+            font-size: 50px;
+            background-color: chocolate;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none
+        }
+
+        #checkout:hover {
+            background-color: orangered
+        }
+
+        /* 購買商品內文 */
+        #orderText {
+
+            color: black;
+            font-size: 3vh;
+            line-height: 4vh;
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        /* 表單 */
+        #goodTable {
+            position: relative;
+            left: 20vw;
+            width: auto;
+            display: inline-block;
+            background-color: whitesmoke;
+
+        }
+
+        tr,
+        th {
+            border-color: black;
+            border: black;
+            border-style: solid;
+        }
+
+        #bigBox {
+            position: relative;
+            top: 25vh;
+            display: flex;
+            Flex-direction: column
+        }
+
+        /* 裝著超商取貨購買方式的盒子 */
+        #second {
+            position: relative;
+            left: 20vw;
+            color: black;
+            font-size: 20px;
+            width: 50vw;
+            background-color: whitesmoke;
+        }
+
+        /* 顯示克服時間 */
+        .bot {
+            position: relative;
+            text-align: center;
+            background-color: skyblue;
+            margin: 0;
+            bottom: -10vh;
+            display: block;
+            height: 5vh;
+
+        }
+
+        /* 顯示使用者名稱 */
+        #logfirstName {
+            position: fixed;
+            top: 4vh;
+            left: 20vw;
+            z-index: 999;
+            color: black;
+            width: 10vw;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        #discount{
+            position: fixed;
+            width: 5vw;
+            height: 5vw;
+            right: 3vw;
+            bottom: 3vw;
+            animation-name: jump;
+            animation-duration: 1000ms;
+            animation-delay: 0;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            z-index: 999    ;
+        }
+        @keyframes jump{
+            0% {
+                transform: scale(1)
+            }
+            50% {
+                transform: scale(1.4)
+            }          
+
+            100% {
+                transform: scale(1)
+            }
+        }
+    </style>
+    <script src="./_js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    
+    <img src="./背景/全站99免運.png" alt="" id="discount" >
+    <div id="logfirstName"></div>
+    <div><a href="./frontpage.html">
+            <img src="./背景/holomyth01.jpg" alt="myth" class="mythlogo"></a>
+    </div>
+    <div class="navlink">
+        <a href="./order.html">Order</a>
+        <a href="./login.html">Log in</a>
+        <a href="./official_goods.html">Official goods</a>
+        <a href="./member.html">Members</a>
+        <div class="bot">
+
+            客服專線時間:012456789 服務時間週一 ~ 日 9:00 ~ 18:00
+
+        </div>
+    </div>
+    <div id="leftBox">
+        <div id="total"></div>
+        <div id="checkout">結帳</div>
+    </div>
+
+    <div id="bigBox">
+        <div id="first">
+            <table id="goodTable">
+                <tr>
+                    <th>
+                        <div id="orderText">購買清單 </div>
+                    </th>
+                    <th>
+                        <div id="numText">數量</div>
+                    </th>
+                    <th>
+                        <div id="priceText">單價</div>
+                    </th>
+
+                </tr>
+                <tr>
+                    <th>
+                        <div id="order"></div>
+                    </th>
+                    <th>
+                        <div id="number"></div>
+                    </th>
+                    <th>
+                        <div id="price"></div>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+        <div id="second">
+            <form action="" id="formL">
+                <fieldset>
+                    <h3>運送方式</h3>
+                    <h5>超商取貨</h5>
+                    <input type="radio" name="sentWay" value="7-11取貨">7-11取貨
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" name="sentWay" value="全家取貨">全家取貨
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" name="sentWay" value="萊爾富取貨">萊爾富取貨
+                    <br>
+                    選擇門市
+                    <br><input type="text" list="address" name="address" placeholder="選擇門市" style="width:20vw"
+                        id="cAddress"></label>
+                    <datalist id="address">
+                        <option value="全家便利商店 台中西屯店">
+                        <option value="全家便利商店 台中新惠來店">
+                        <option value="全家便利商店 台中儷晶店">
+                        <option value="全家便利商店 台中豐盛店">
+                        <option value="7-ELEVEN 市鑫門市 BIG7">
+                        <option value="7-ELEVEN 科雅門市">
+                        <option value="7-ELEVEN 科博館門市">
+                        <option value="7-ELEVEN 新墩興門市">
+                        <option value="萊爾富便利商店 台中中河店">
+                        <option value="萊爾富便利商店 台中大恩店">
+                        <option value="萊爾富便利商店 台中忠誠店">
+                        <option value="萊爾富便利商店 台中永讚店">
+                    </datalist>
+                    <h5>其他取貨方式</h5>
+                    <input type="radio" name="sentWay" value="黑貓宅急便">黑貓宅急便
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" name="sentWay" value="面交">面交
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" name="sentWay" value="郵寄">郵寄
+                    <br> <span style="font-size: 10px;">黑貓宅急便,郵寄</span> <br>
+                    <input type="text" placeholder="取貨地址" style="width:20vw" name="address" id="hAddress">
+                </fieldset>
+            </form>
+            <form action="" id="formL">
+                <fieldset>
+                    <h3>付款方式</h3>
+
+                    <input type="radio" name="payWay" value="信用卡">信用卡
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" name="payWay" value="ATM轉帳">ATM轉帳
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" name="payWay" value="貨到付款">貨到付款
+                    <br><br>
+                    <h5>超商門市</h5>
+                    <input type="radio" name="payWay" value="超商貨到付款">超商貨到付款
+
+                </fieldset>
+            </form>
+            <form action="" id="formL">
+                <fieldset>
+                    <h3>備註</h3>
+
+                    <input type="text" id="toseller" name="toSeller" placeholder="給賣家的話" style="width:20vw ; height: 8vh">
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        var content = localStorage.getItem("good_content");
+        var num = localStorage.getItem("good_num");
+        var goodPrice = localStorage.getItem("goodPrice");
+        var sum = localStorage.getItem("total");
+        order.innerHTML = "<br>" + content;
+        number.innerHTML = num;
+        price.innerHTML = goodPrice;
+        if (sum != null) {
+            total.innerHTML = `商品小計:NT$${sum} 元`;
+        }
+
+
+        $("#checkout").click(function () {
+            if ($("[name='sentWay']:checked").val() != undefined && "[ name='payWay']" != undefined) {
+                console.log($("[name='sentWay']:checked").val());
+                console.log($("[ name='payWay']:checked").val());
+                console.log($("[name='address']").val());
+                console.log($("#hAddress").val());
+                console.log($("[ name='toSeller']").val());
+
+                var sentWay = $("[name='sentWay']:checked").val();
+                var payWay = $("[ name='payWay']:checked").val();
+                var toSeller = $("[ name='toSeller']").val();
+                var addr = $("[name='address']").val();
+                var hAddr = $("#hAddress").val();
+                
+                localStorage.setItem("sentWay", sentWay);
+                localStorage.setItem("payWay", payWay);
+                localStorage.setItem("addr", addr);
+                localStorage.setItem(" hAddr", hAddr);
+                localStorage.setItem("toSeller", toSeller);
+                if (sum != null) {
+                    localStorage.setItem("total", sum);
+                }
+            }
+            location.href = "./successOrder.html" 
+        }
+
+
+        )
+
+
+
+        
+        // 顯示使用者名稱
+        if (localStorage.getItem("firstName") != 0) {
+            console.log("asd")
+            $("#logfirstName").text(localStorage.getItem("firstName"));
+        }
+
+        // 如果有使用者跳轉到成功訂單
+        $("#logfirstName").click(
+            function () {
+                if (localStorage.getItem("firstName") != 0) {
+                    location.href = "./successOrder.html"
+                }
+            }
+        )
+        $("#discount").click(function(){
+            $("#discount").css("display","none")
+        })
+    </script>
+</body>
+
+</html>

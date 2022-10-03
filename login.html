@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navlink {
+            position: fixed;
+            top: 0%;
+            right: 0%;
+            z-index: 3;
+            /* background-color: black; */
+            background: radial-gradient(circle farthest-corner at left, white, black);
+            width: 100%;
+
+        }
+
+        .navlink a {
+            text-decoration: none;
+            color: white;
+            background-color: none;
+            padding-top: 2vw;
+            padding-bottom: 2vw;
+            border-color: rgb(243, 238, 238);
+            padding: auto;
+            margin: -2px;
+            /* float向右排列 */
+            float: right;
+            text-align: center;
+            width: 12vw;
+            font-size: 1vw;
+
+        }
+
+        .mythlogo {
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12vw;
+            height: 12vw;
+            z-index: 6;
+        }
+
+        .navlink a:hover {
+            color: black;
+            background-color: white;
+            border-radius: 2cm;
+        }
+
+        body {
+            background-image: url(./背景/black02.jpg);
+        }
+
+        /* #mainBox{
+            position: absolute;
+            left: 25vw;
+            width: 50vw;
+            top: 20vh;
+            height: 60vh;
+          
+        } */
+        fieldset {
+            color: white;
+            width: 30%;
+            margin-left: 35%;
+            position: relative;
+            top: 20vh;
+            height: 35vh;
+        }
+
+        .account {
+            height: 4vh;
+            width: 30vw;
+        }
+
+        .scode {
+            height: 4vh;
+            width: 30vw;
+
+        }
+
+        /* outline 在input的預設會蓋掉border所以先把他none 關掉 */
+        input:focus {
+            outline: none;
+            border: 1px red solid;
+        }
+
+        #logIn {
+            position: relative;
+            text-align: center;
+            width: 30%;
+            background-color: blue;
+            left: 35%;
+            border-radius: 20px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        #buildAccount {
+            position: relative;
+            text-align: center;
+            width: 30%;
+            background-color: blue;
+            left: 35%;
+            border-radius: 20px;
+            padding: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .logInForm {
+            width: 500px;
+            height: 550px;
+            background-color: antiquewhite;
+            position: absolute;
+            left: 40%;
+            top: 20%;
+            text-align: center;
+            display: none;
+        }
+
+        #firstName,
+        #lastName {
+            height: 30px;
+            width: 200px;
+            margin-top: 20PX;
+        }
+
+
+        #phone,
+        #date,
+        #sexual,
+        #password {
+            height: 30px;
+            width: 410px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #logInEnter {
+            width: 100px;
+            height: 50px;
+            background-color: gray;
+            color: aliceblue;
+            font-size: 20px;
+        }
+
+        /* 離開按鍵 */
+        #leave {
+            position: absolute;
+            right: 7px;
+            top: 7px;
+            cursor: pointer;
+        }
+         /* 登入者姓名 */
+         #logfirstName {
+            position: fixed;
+            top: 4vh;
+            left: 20vw;
+            z-index: 999;
+            color: black    ;
+            width: 10vw;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="./_js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <div id="logfirstName"></div>
+    <div class="navlink">
+        <a href="./order.html">Order</a>
+        <a href="./login.html">Log in</a>
+        <a href="./official_goods.html">Official goods</a>
+        <a href="./member.html">Members</a>
+    </div>
+    <div><a href="./frontpage.html">
+            <img src="./背景/holomyth01.jpg" alt="myth" class="mythlogo"></a>
+    </div>
+    <div id="mainBox">
+        <label for=""></label>
+        <form action="">
+            <fieldset>
+                <div class="log_in">
+
+                    <br>
+                    <br>
+                    <input type="text" class="account" placeholder="電子郵件或帳號" id="phoneConfirm">
+                    <br><br><br>
+                    <br>
+                    <input type="password" class="scode" placeholder="密碼" id="passwordConfirm">
+                    <br><br>
+                    <div id="logIn">登入</div>
+                    <div id="buildAccount">註冊</div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="logInForm"><br>
+        <div id="leave">X</div>
+        註冊
+        <br>
+        <input type="text" placeholder="姓氏" name="lastName" id="lastName">
+        <input type="text" placeholder="名字" name="firstName" id="firstName">
+        
+        <br>
+        <input type="text" placeholder="手機號碼或郵件" name="phone" id="phone">
+        <br>
+        <input type="text" placeholder="設定密碼" name="password" id="password">
+        <br>
+        
+        <input type="date" list="date" name="date" id="date">
+        <label for="sexual">
+        </label>
+        <select name="sexual" id="sexual">
+            <optgroup label="性別">
+                <option value="male">男性</option>
+                <option value="female">女性</option>
+            </optgroup>
+        </select>
+        <br><br><br>
+        <button id="logInEnter">註冊</button>
+
+    </div>
+    <script>
+       
+        // 按下註冊帳號鍵跳出註冊按鈕
+        $("#buildAccount").click(function () {
+            $(".logInForm").css("display", "block")
+        });
+        // 按下註冊鍵確定註冊儲存資料
+        $("#logInEnter").click(
+            function () {
+                if ($("#firstName").val() != 0 && $("#lastName").val() != 0
+                    && $("#phone").val() != 0 && $("#password").val() != 0) {
+
+                    console.log($("#firstName").val());
+                    console.log($("#lastName").val());
+                    console.log($("#phone").val());
+                    console.log($("#password").val());
+                    console.log($("#date").val());
+                    console.log($("#sexual").val());
+                     localStorage.setItem("lfirstName",$("#firstName").val());
+                     localStorage.setItem("llastName",$("#lastName").val());
+                     localStorage.setItem("lphone",$("#phone").val());
+                     localStorage.setItem("lpassword",$("#password").val());
+                     localStorage.setItem("ldate",$("#date").val());
+                     localStorage.setItem("lsexual",$("#sexual").val());
+                     $(".logInForm").css("display", "none");
+                }
+
+            }
+        )
+        // 離開按鍵
+        $("#leave").click(function () {
+            $(".logInForm").css("display", "none");
+        })
+        //按下登錄鍵 進行登入
+        $("#logIn").click(function(){
+            if($("#phoneConfirm").val() == localStorage.getItem("lphone")
+            && $("#passwordConfirm").val() == localStorage.getItem("lpassword")
+            ) {
+                localStorage.setItem("firstName",$("#firstName").val());
+                location.href="./frontpage.html";
+            }
+            else alert("帳密輸入錯誤")
+        })
+         // 顯示使用者名稱
+         if (localStorage.getItem("firstName") != 0) {
+            console.log("asd")
+            $("#logfirstName").text(localStorage.getItem("firstName"));
+        }
+    </script>
+</body>
+
+
+</html>

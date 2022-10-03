@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navlink {
+            position: fixed;
+            top: 0%;
+            right: 0%;
+            z-index: 6;
+        }
+
+        .navlink a {
+            text-decoration: none;
+            color: white;
+            background-color: none;
+            padding-top: 2vw;
+            padding-bottom: 2vw;
+            border-color: rgb(243, 238, 238);
+            padding: auto;
+            margin: -2px;
+            /* float向右排列 */
+            float: right;
+            text-align: center;
+            width: 12vw;
+            font-size: 1vw;
+
+        }
+
+        .mythlogo {
+            opacity: 0.7;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12vw;
+            height: 12vw;
+            z-index: 2;
+        }
+
+        .navlink a:hover {
+            color: black;
+            background-color: white;
+            border-radius: 2cm;
+        }
+
+        body {
+            background-image: url(./背景/black01.jpg);
+        }
+
+        .main {
+            position: relative;
+            display: flex;
+            top: 20vh;
+            flex-direction: row;
+            /* 左右平均排列 */
+            justify-content: space-between;
+            /* 左右邊不會留空白平均對齊 */
+        }
+
+        .box1 {
+            width: 20vw;
+            height: 200vh;
+            margin: 10px;
+            background-image: url(./背景/sakura.jpg);
+            color: black;
+            font-size: 24px;
+        }
+
+        .box2 {
+            width: 65vw;
+            height: 100%;
+            margin: 10px;
+            background-color: lightgrey;
+            color: black;
+            font-size: 24px;
+        }
+
+        .box3 {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: rgb(0, 255, 115);
+            color: white;
+            font-size: 24px;
+        }
+
+        .box2 a {
+            text-decoration: none;
+        }
+
+        /* 商品圖片 */
+        .box2 img {
+            width: 14vw;
+            height: 30vh;
+            position: relative;
+            object-fit: fill;
+
+            margin-top: 0vh;
+            margin-bottom: 0vh;
+
+        }
+
+        /* 設定中間條裡面的比例  */
+        .smallBox {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .box2 img:hover {
+            transform: scale(1.1);
+        }
+
+        /* 商品敘述文樣式 */
+        .imgText div {
+            margin-top: -2vh;
+            padding-top: 0;
+            font-size: 2vh;
+            width: 14vw;
+            height: 10vh;
+
+            position: relative;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            color: black;
+            -webkit-box-orient: vertical;
+            background-color: white;
+        }
+
+        /* 商品價格 按鈕 */
+        .imgText h5 {
+            padding: 0;
+            border-style: solid;
+            border-color: white;
+            background-color: white;
+            margin-top: 0;
+            margin-bottom: 5vh;
+        }
+
+        /* 內文HOVER  */
+        .imgText div:hover {
+            text-decoration: underline;
+
+        }
+
+        .primary {
+            height: 70vh;
+            width: 1200px;
+            color: blueviolet;
+            background-color: white;
+            position: relative;
+            top: 10vh;
+            left: 25vw;
+            overflow: hidden;
+        }
+
+        /* 裝著圖片的DIV */
+
+        #scrollLine {
+            position: absolute;
+            height: 630px;
+            width: 10000px;
+            left: 0;
+        }
+
+        /* 五張輪播圖片 */
+        #calli {
+            position: relative;
+            left: 0;
+            width: 1200px;
+            height: 630px;
+
+        }
+
+        #gura {
+            position: absolute;
+            left: 1500px;
+            width: 630px;
+            height: 630px;
+        }
+
+        #ina {
+            position: absolute;
+            left: 2700px;
+            width: 630px;
+            height: 630px;
+        }
+
+        #kiara {
+            position: absolute;
+            left: 3900px;
+            width: 630px;
+            height: 630px;
+        }
+
+        #calliB {
+            position: absolute;
+            left: 5100px;
+            width: 630px;
+            height: 630px;
+        }
+
+        /* 連接圖片 */
+        #calliLink {
+            position: absolute;
+            left: 6000px;
+            width: 1200px;
+            height: 630px;
+        }
+
+        #next {
+            position: absolute;
+            right: 0;
+            top: 40%;
+            font-size: 5vw;
+            z-index: 6;
+            display: none;
+            cursor: pointer;
+        }
+
+        #prev {
+            position: absolute;
+            left: 0;
+            top: 40%;
+            font-size: 5vw;
+            z-index: 3;
+            display: none;
+            cursor: pointer;
+        }
+
+        /* /* 整個搜尋BOX */
+        .find {
+            position: absolute;
+            right: 10vw;
+            top: 86vh;
+            width: 65vw;
+            height: 6vh;
+            background-color: crimson;
+        }
+
+        .find span {
+            color: aliceblue;
+            position: absolute;
+            top: 1vh;
+
+        }
+
+        /* 搜尋的input */
+        #find {
+            position: relative;
+            top: 1vh;
+            height: 2vh;
+            left: 45vw;
+
+        }
+
+        /* 搜尋 中文字 */
+        #findText {
+            cursor: pointer;
+            color: aliceblue;
+            position: relative;
+            top: 1vh;
+            left: 45vw;
+        }
+
+        /* 三個熱門搜尋 */
+        #hotF {
+            position: absolute;
+            left: 10vw;
+            cursor: pointer
+        }
+
+        #hotS {
+            position: absolute;
+            cursor: pointer;
+            left: 20vw
+        }
+
+        #hotT {
+            position: absolute;
+            cursor: pointer;
+            left: 30vw
+        }
+
+
+
+        .find img {
+            position: absolute;
+            right: 1vw;
+            bottom: 1vh;
+            height: 4vh;
+            width: 4vh;
+        }
+
+        .scrollList {
+            position: fixed;
+            right: 1vw;
+            top: 30%;
+            color: aliceblue;
+            width: 40px;
+            border-radius: 20px;
+
+            z-index: 6;
+            cursor: pointer;
+
+        }
+
+        .scrollList img {
+            width: 50px;
+            height: 50px;
+
+        }
+
+        .scrollListIn {
+            position: fixed;
+            right: 4vw;
+            top: 20%;
+            background-color: aliceblue;
+            width: 20vw;
+            height: auto;
+            display: none;
+            z-index: 100;
+            border-color: black;
+            border-style: solid;
+
+
+        }
+
+        #rightBar {
+
+            z-index: 9999;
+
+            width: 50px;
+
+            position: fixed;
+
+            right: 10px;
+
+            bottom: 5%;
+
+            height: auto;
+
+        }
+
+        #rightBar .btn {
+
+            width: 50px;
+
+            height: 50px;
+
+            text-align: center;
+
+            line-height: 20px;
+
+            display: inline-block;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+        }
+
+        #rightBar img {
+            width: 40px;
+            height: 40px;
+
+        }
+
+        .box1 div {
+            text-align: center;
+        }
+
+        .box1>div:hover {
+            cursor: pointer;
+            color: red;
+
+
+        }
+
+        #newest {
+            display: none;
+        }
+
+        #enFirst {
+            display: none;
+
+        }
+
+        #promotion {
+            display: none;
+        }
+
+        #enSecond {
+            display: none;
+
+        }
+
+        /* 登入者姓名 */
+        #logfirstName {
+            position: fixed;
+            top: 4vh;
+            left: 20vw;
+            z-index: 999;
+            color: white;
+            width: 10vw;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        #scrollImg {
+            position: absolute;
+            right: 0vw;
+            top: 20vh;
+            z-index: 100;
+            width: 10vw;
+
+        }
+    </style>
+    <script src="./_js/jquery-3.6.0.js"></script>
+</head>
+</head>
+
+<body>
+    <img src="./周邊/scroll.jpg" alt="" id="scrollImg">
+    <div id="logfirstName"></div>
+    <div id="rightBar">
+
+        <div class="btn" id="shougongBtn"><span><img src="./背景/top.jpg" /></a></span></div>
+
+    </div>
+    <div><a href="./frontpage.html">
+            <img src="./背景/holomyth01.jpg" alt="myth" class="mythlogo"></a>
+    </div>
+    <header>
+        <div class="navlink">
+            <a href="./order.html">Order</a>
+            <a href="./login.html">Log in</a>
+            <a href="./official_goods.html">Official goods</a>
+            <a href="./member.html">Members</a>
+
+        </div>
+    </header>
+    <div class="primary">
+        <div id="prev">&#10094;</div>
+        <div id="next">&#10095;</div>
+        <div id="scrollLine">
+            <img src="./背景/CALLImain_01.jpg" alt="" id="calli">
+            <img src="./背景/GuraBirthday.jpg" alt="" id="gura">
+            <img src="./周邊/ina周邊.jpg" alt="" id="ina">
+            <img src="./背景/KIARABIR.jpg" alt="" id="kiara">
+            <img src="./背景/CalliBIR.jpg" alt="" id="calliB">
+            <img src="./背景/CALLImain_01.jpg" alt="" id="calliLink">
+        </div>
+
+    </div>
+    <div class="find">
+        <span>熱門關鍵字</span>
+        <span id="hotF">生日</span>
+        <span id="hotS"> Concert</span>
+        <span id="hotT">特典</span>
+        <input type="text" id="find" onkeypress="checkEnter(event)" placeholder="輸入你想找的商品">
+        <img src="./周邊/magnifying-glass.png" alt="">
+        <span id="findText">搜尋</span>
+
+    </div>
+    <div class="scrollList"><img src="./背景/buyy.jpg" alt=""></div>
+    <div class="scrollListIn"></div>
+    <div class="main">
+        <nav class="box1">
+            <div id="promotionBtn">促銷活動</div>
+            <div id="promotion">
+                <div>►限時66折起！購物金加倍送！還有0元訂單抽獎！</div>
+                <div>►【超神抽】抽抽抽！百元抱走萬元大獎！ 超值回饋無痛抽！</div>
+                <div>►【hololive生日、訂閱組合包】任選1件95折、兩件再享免運</div>
+                <div>►怕髒就點滿防禦 展示盒滿千免運 再送100現金積點！</div>
+            </div>
+            <br><br>
+            <div id="newestBtn">最新商品</div>
+            <div id="newest">
+                <div>HololiveEN IRyS 活動1周年紀念 套組</div>
+                <br>
+                <div>Hololive 紫咲シオン 紫咲詩音 100萬紀念 桌墊 周邊</div>
+                <br>
+                <div>大神ミオ 大神澪 100萬訂閱紀念 澪同款居家連帽衫</div>
+            </div>
+            <br><br>
+            <div>近期活動</div>
+            <br><br>
+            <div id="enFirstBtn">EN一期生相關</div>
+            <div id="enFirst">
+                <div>Gura</div>
+                <br>
+                <div>Ame</div>
+                <br>
+                <div>Calli</div>
+                <br>
+                <div>Ina</div>
+                <br>
+                <div>Kiara</div>
+            </div>
+            <br><br>
+            <div id="enSecondBtn">EN二期生相關</div>
+            <div id="enSecond">
+                <div>Irsy</div>
+                <br>
+                <div>Sana</div>
+                <br>
+                <div>Bae</div>
+                <br>
+                <div>Fauna</div>
+                <br>
+
+                <div>Mume</div>
+                <br>
+                <div>Kronii</div>
+            </div>
+            <br><br>
+            <div>Cover 公告</div>
+
+
+        </nav>
+        <article class="box2">
+            <div class="smallBox">
+                <!-- smallBox用來做第二次flex設定 -->
+                <div class="smallBox1">
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/22052445809742_870.jpg" alt="">
+                        <div> Mine公仔日版 Hololive EN MYTH 起源 T恤 森美聲 小鳥遊琪亞拉 Ina 古拉 華生 B0318
+                        </div>
+                        <!-- 按鈕設定連接到LOCAL STORAGE -->
+                        <h5>$1,880 <button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/en外套.jpg" alt="">
+                        <div>EN 影繪 連帽外套 衣服 English -Myth- 活動一周年記念 BOOTH 代購 周邊</div>
+                        <h5>$2,540<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/myth01.jpg" alt="">
+                        <div>Hololive EN MYTH x OMOCAT 小吊飾 立牌</div>
+                        <h5>$500<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/kiara牌套.jpg" alt="">
+                        <div>同人卡套 hololive en 小鳥遊琪亞拉 Kiara</div>
+                        <h5>$500<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./背景/CALLImain_01.jpg" alt="">
+                        <div>Mori Calliope Major Debut Concert “New Underworld Order”</div>
+                        <h5>$1,200<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/sana.jpg" alt="">
+                        <div>Hololive EN Council 九十九佐命 Tsukumo Sana 誕生日記念2022</div>
+                        <h5>$3,750<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/kronii.jpg" alt="">
+                        <div>Hololive EN Ouro Kronii オーロ・クロニー 誕生日記念2022 紀念 抱枕套</div>
+                        <h5>$12,800<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <!-- 第一列圖片放在上面-->
+                </div>
+                <div class="smallBox2">
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/吊飾.jpg" alt="">
+                        <div>hololive english myth 活動半年記念 鑰匙圈 吊飾 掛飾</div>
+                        <h5>$2,500<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/外套2.jpg" alt="">
+                        <div>EN MYTH x OMOCAT 五人 T恤 長袖 外套 三款分售</div>
+                        <h5>$2,000<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/書包.jpg" alt="">
+                        <div>鯊魚娘hololive噶嗚古拉vtuber周邊初中學生書包潮牌卡通雙肩背包</div>
+                        <h5>$1,309<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/kiara立牌.jpg" alt="">
+                        <div> 壓克力立牌-小鳥遊琪亞拉-Takanashi Kiara，火雞 </div>
+                        <h5>$109<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./背景/KIARABIR.jpg" alt="">
+                        <div> Hololive HololiveEN がうる・ぐら Gawr Gura 誕生日記念 2022 套組 周邊 </div>
+                        <h5>$4,250<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/fauna周邊.png" alt="">
+                        <div> Fauna セレス・ファウナ 誕生日記念2022 </div>
+                        <h5>$1,600<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/baelz.jpg" alt="">
+                        <div> 議會滑鼠墊Hakos Baelz角色滑鼠墊周邊超大桌墊 </div>
+                        <h5>$510<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <!-- 第二列圖片放在這上面 -->
+                </div>
+                <div class="smallBox3">
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/calli01.jpg" alt="">
+                        <div>Hololive Myth x OMOCAT Calliope Mori DEADBEATS 外套</div>
+                        <h5>$3,700<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/ggura.jpg" alt="">
+                        <div>Hololive EN MYTH Gawr Gura 噶嗚 古拉 生日紀念 特典 明信片</div>
+                        <h5>$900<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/CD.jpg" alt="">
+                        <div>特典版 Hololive EN 森美聲 1st EP 「SHINIGAMI NOTE」通常盤</div>
+                        <h5>$880<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/INA桌墊.png" alt="">
+                        <div>一伊那爾棲 ninomae ina'nis動漫遊戲周邊滑鼠墊鍵盤墊桌墊</div>
+                        <h5>$400<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./背景/GuraBirthday.jpg" alt="">
+                        <div>Hololive HololiveEN がうる・ぐら Gawr Gura 誕生日記念 2022 套組 周邊</div>
+                        <h5>$3,600<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/irsy.jpg" alt="">
+                        <div> HololiveEN IRyS 活動1周年紀念 套組 周邊</div>
+                        <h5>$4,550<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                </div>
+                <!-- 第三列圖片放在這上面 -->
+                <div class="smallBox4">
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/EN馬克杯.jpg" alt="">
+                        <div>Hololive EN 影繪 馬克杯 English Myth 活動一周年記念 BOOTH 周邊</div>
+                        <h5>$660<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/玩偶.jpg" alt="">
+                        <div> Hololive EN MYTH 活動半年紀念 吉祥物 布偶 娃娃 </div>
+                        <h5>$1,880<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/kiara桌布.jpg" alt="">
+                        <div> 會場限定桌墊小鳥遊 Kiara hololive EN 會場限定卡墊 桌墊 卡墊 火雞 </div>
+                        <h5>$1,600<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/ina周邊.jpg" alt="">
+                        <div> EN Ina 生日 紀念 周邊 </div>
+                        <h5>$2,600<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./背景/CalliBIR.jpg" alt="">
+                        <div> 森カリオペ 森美聲 Mori Calliope 誕生日紀念 2022 生日紀念套組 </div>
+                        <h5>$5,544<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                    <a href="javascript:void(0)" class="imgText"><img src="./周邊/mumei掛軸.jpg" alt="">
+                        <div> 七詩無名 Nanashi Mumei 掛畫 海報 動漫周邊 掛軸 </div>
+                        <h5>$1,412<button class="btnp">+</button> <button class="btnm">-</button></h5>
+                    </a>
+                </div>
+                <!-- 第四列圖片放在這上面 -->
+            </div>
+        </article>
+        <aside class="box3"></aside>
+    </div>
+    <aside></aside>
+
+    <!-- localstorage 存放資料 -->
+    <script>
+        // 內文
+        var buy = "";
+        // 會有多個重複的文字表
+        var btyList = [];
+        // 顯示購買數量
+        var listCtl = []
+        // 不可以重複的商品文list
+        var indexBuy = []
+        // 商品單品的價錢
+        var price = []
+        // 總價
+    
+        var total = 0
+        $(".btnp").click(function () {
+
+            console.log(parseInt($(this).closest($("h5")).text().replace(",", "").replace("$", "")))
+            // 檢查表內是否已經有文字
+            if (btyList.filter(element => element == $(this).closest($("a"))
+                .find($("div")).text()).length > 0) {
+                // 把內文加到重覆字串的list
+                btyList.push($(this).closest($("a")).find($("div")).text());
+                // 找到內文人在第幾個位置
+                var abbr = indexBuy.indexOf($(this).closest($("a")).find($("div")).text());
+                //  用list[位置的方法]抓到目標貨物的數量位置 再把數量設成目前的數量
+                listCtl[abbr] = btyList.filter(element => element == $(this).closest($("a"))
+                    .find($("div")).text()).length;
+                // 逗點轉成/n換行
+                var num = listCtl.toString().replace(/,/g, "<br><br>");
+                localStorage.setItem("good_num", num);
+
+                // 用迴圈把商品數量listCtl乘上商品單價price得到總價
+                var temp = 0
+                for (var i = 0; i < listCtl.length; i++) {
+                    temp += parseInt(listCtl[i]) * parseInt(price[i])
+                    total = temp;
+                    console.log(total);
+                }
+                localStorage.setItem("total", total);
+
+            }
+
+            else {
+                // 把單品價錢放進LIST
+                price.push(parseInt($(this).closest($("h5")).text().replace(",", "").replace("$", "")))
+                //  把陣列轉成字串再把逗號變成換行
+                var goodPrice = price.toString().replace(/,/g, "<br><br>");
+                // 把資料內文放進LIST
+                btyList.push($(this).closest($("a")).find($("div")).text());
+                // 把資料內文放到陣列 再用indexBuy方法找人                
+                indexBuy.push($(this).closest($("a")).find($("div")).text());
+                // 把內文放進buy字串資料
+                buy += $(this).closest($("a")).find($("div")).text() + "<br><br>";
+                localStorage.setItem("buy", buy);
+                // 給予商品數量的list加入  1 的資料 
+                listCtl.push(1);
+                //  把陣列轉成字串再把逗號變成換行
+                var num = listCtl.toString().replace(/,/g, "<br><br>");
+                localStorage.setItem("good_content", buy);
+                localStorage.setItem("good_num", num);
+                localStorage.setItem("goodPrice", goodPrice);
+
+                var temp = 0
+                for (var i = 0; i < listCtl.length; i++) {
+                    temp += parseInt(listCtl[i]) * parseInt(price[i])
+                    total = temp;
+                    console.log(total);
+                }
+                localStorage.setItem("total", total);
+            }
+          
+
+            //   下列可以抓到商品價格但是有+-號
+            //  console.log($(this).closest($("h5")).text() );
+            // 下列可以抓到商品內文
+            // console.log($(this).closest($("a")).find($("div")).text());
+            // localStorage.setitem=(,)
+            // 思路用if判斷式 INDEXof篩選特定字串來控制動作
+
+            // var ins = localStorage.getItem("buy");
+            // console.log(ins);
+
+        })
+        $(".btnm").click(function () {
+            // 如果重複陣列的對應字串數量大於一
+            if (btyList.filter(element => element == $(this).closest($("a"))
+                .find($("div")).text()).length > 1) {
+                // 數量更動
+                // 找到對應字串在重複陣列中的位置
+                var minusOrder = btyList.indexOf($(this).closest($("a")).find($("div")).text());
+                // 找到後把他從重複陣列砍掉
+                btyList.splice(minusOrder, 1);
+                // 找到資料在不重複陣列的位置
+                var abbr = indexBuy.indexOf($(this).closest($("a")).find($("div")).text());
+                // 用陣列[]設定對應資料的值為現在的對應內文數量 上面被砍掉了一個所以會掉一
+                listCtl[abbr] = btyList.filter(element => element == $(this).closest($("a"))
+                    .find($("div")).text()).length;
+                //  把逗號變成換行 儲存資料到 localStorage
+                var num = listCtl.toString().replace(/,/g, "<br><br>");
+                localStorage.setItem("good_num", num);
+
+
+                var temp = 0
+                for (var i = 0; i < listCtl.length; i++) {
+                    temp += parseInt(listCtl[i]) * parseInt(price[i])
+                    total = temp;
+                    console.log(total);
+                }
+                localStorage.setItem("total", total);
+
+
+            }
+            else if (btyList.filter(element => element == $(this).closest($("a"))
+                .find($("div")).text()).length == 1) {
+                let abbr = indexBuy.indexOf($(this).closest($("a")).find($("div")).text());
+                //   把相應的陣列從陣列中刪除
+                listCtl.splice(abbr, 1);
+                indexBuy.splice(abbr, 1);
+                price.splice(abbr, 1);
+
+                // 把相應的文字內容從字串buy中刪除 用取代replace的方式
+                buy = buy.replace($(this).closest($("a")).find($("div")).text() + "<br><br>", "")
+
+                //  把逗號變成換行
+                var num = listCtl.toString().replace(/,/g, "<br><br>");
+                // 把兩筆字串資料存到 localStorage
+                localStorage.setItem("good_num", num);
+
+                localStorage.setItem("good_content", buy);
+                //把相應資料從重複的list btyList刪除
+                var minusOrder = btyList.indexOf($(this).closest($("a")).find($("div")).text());
+                btyList.splice(minusOrder, 1);
+                var goodPrice = price.toString().replace(/,/g, "<br><br>");
+                localStorage.setItem("goodPrice", goodPrice);
+
+                var temp = 0
+                for (var i = 0; i < listCtl.length; i++) {
+                    temp += parseInt(listCtl[i]) * parseInt(price[i])
+                    total = temp;
+                    console.log(total);
+                }
+                localStorage.setItem("total", total);
+
+            }
+
+        })
+
+    // var imgText=document.getElementsByClassName("imgText");
+    // var addText=document.createTextNode("111");
+    // imgText[0].appendChild(addText);
+    // console.log(imgText[0]);
+
+    </script>
+    <!-- 左右按鈕顯示隱藏 -->
+    <script>
+        $(".primary").hover(
+            function () {
+                $("#next").css("display", "block");
+                $("#prev").css("display", "block");
+            }
+        )
+        $(".primary").mouseleave(
+            function () {
+                $("#next").css("display", "none");
+                $("#prev").css("display", "none");
+            }
+        )
+    </script>
+    <!-- 左右按鈕移動 輪播 -->
+    <script>
+
+        $("#prev").click(
+            function () {
+                if (parseInt($("#scrollLine").css("left")) > -0.0185054) {
+                    $("#scrollLine").css("left", "-6000px")
+                } console.log($("#scrollLine").css("left"))
+                var rightway = parseInt($("#scrollLine").css("left")) + 1200;
+                $("#scrollLine").animate({ left: rightway + "px" }, "normal", "swing")
+
+            }
+        )
+        $("#next").click(
+            function () {
+                if (parseInt($("#scrollLine").css("left")) < -4800) {
+                    $("#scrollLine").css("left", "-0.0185054px")
+                }
+                var rightway = parseInt($("#scrollLine").css("left")) - 1200;
+                $("#scrollLine").animate({ left: rightway + "px" }, "normal", "swing"
+
+                )
+                console.log($("#scrollLine").css("left"))
+            }
+        )
+        setInterval(function () {
+            if (parseInt($("#scrollLine").css("left")) < -4800) {
+                $("#scrollLine").css("left", "-0.0185054px")
+            }
+            var rightway = parseInt($("#scrollLine").css("left")) - 1200;
+            $("#scrollLine").animate({ left: rightway + "px" }, "normal", "swing"
+
+            )
+        }, 4000)
+    </script>
+    <!-- 搜尋 -->
+    <script>
+        var allTextList = []
+        var nam = document.getElementsByClassName("imgText");
+        var allText = $(".imgText div").each(
+            function () {
+                allTextList.push($(this).text())
+            }
+        )
+        console.log(allTextList)
+        $("#findText").click(
+            function () {
+                if ($("#find").val() != "") {
+                    for (var i = 0; i < nam.length; i++) {
+                        nam[i].style.display = "none";
+                    }
+                    $.each(allTextList, function (num, ele) {
+                        console.log(ele.indexOf($("#find").val()));
+                        if (ele.indexOf($("#find").val()) > -1) {
+                            nam[num].style.display = "block";
+
+                        }
+                    })
+                }
+
+
+            }
+        )
+    </script>
+    <!-- 浮現購買清單 -->
+    <script>
+        $(".scrollList").click(
+            function () {
+                $(".scrollListIn").slideToggle("slow");
+                var buyListSlide = localStorage.getItem("good_content");
+                $(".scrollListIn").html(buyListSlide);
+            }
+        )
+
+        function checkEnter(evt) {
+            if (evt.keyCode == 13) {
+                if ($("#find").val() != "") {
+                    for (var i = 0; i < nam.length; i++) {
+                        nam[i].style.display = "none";
+                    }
+                    $.each(allTextList, function (num, ele) {
+                        console.log(ele.indexOf($("#find").val()));
+                        if (ele.indexOf($("#find").val()) > -1) {
+                            nam[num].style.display = "block";
+
+                        }
+                    })
+                }
+
+
+
+
+
+            }
+
+        }
+
+
+    </script>
+    <script>
+        $("#hotF").click(
+            function () {
+                for (var i = 0; i < nam.length; i++) {
+                    nam[i].style.display = "none";
+                }
+                $.each(allTextList, function (num, ele) {
+
+                    if (ele.indexOf("生日") > -1) {
+                        nam[num].style.display = "block";
+
+                    }
+                })
+            }
+        )
+        $("#hotT").click(
+            function () {
+                for (var i = 0; i < nam.length; i++) {
+                    nam[i].style.display = "none";
+                }
+                $.each(allTextList, function (num, ele) {
+
+                    if (ele.indexOf("特典") > -1) {
+                        nam[num].style.display = "block";
+
+                    }
+                })
+            }
+        )
+        $("#hotS").click(
+            function () {
+                for (var i = 0; i < nam.length; i++) {
+                    nam[i].style.display = "none";
+                }
+                $.each(allTextList, function (num, ele) {
+
+                    if (ele.indexOf("Concert") > -1) {
+                        nam[num].style.display = "block";
+
+                    }
+                })
+            }
+        )
+        // 至頂自動卷軸
+        $("#shougongBtn").click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 500)
+
+        })
+        // 右邊欄位開關
+        $("#enSecondBtn").click(
+            function () {
+                $("#enSecond").toggle()
+            }
+        )
+        $("#enFirstBtn").click(
+            function () {
+                $("#enFirst").toggle()
+            }
+        )
+        $("#promotionBtn").click(
+            function () {
+                $("#promotion").toggle()
+            }
+        )
+        $("#newestBtn").click(
+            function () {
+                $("#newest").toggle()
+            }
+        )
+        // 顯示名稱
+        if (localStorage.getItem("firstName") != 0) {
+            console.log("asd")
+            $("#logfirstName").text(localStorage.getItem("firstName"));
+        }
+        // 如果有使用者跳轉到成功訂單
+        $("#logfirstName").click(
+            function () {
+                if (localStorage.getItem("firstName") != 0) {
+                    location.href = "./successOrder.html"
+                }
+            }
+        )
+
+        function debounce(func, delay = 250) {
+            let timer = null;
+
+            return () => {              
+
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func();
+                }, delay)
+            }
+        }
+
+        $(window).on('wheel', debounce(function () {
+
+            var scroHei = $(window).scrollTop();
+            if (scroHei > 0) {
+                $("#scrollImg").animate(
+                    { top: (scroHei + 400) + "px" }, 400, "swing"
+                )
+            }
+
+        }))
+
+    </script>
+</body>
+
+</html>
